@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box } from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
+import { AppBar, Box, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link, useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: "#00BFFF",
+  color: "white",
+
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: "#00BFFF",
+    color: "white",
   },
   marginLeft: 0,
   width: "100%",
@@ -31,26 +35,33 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  cursor: "pointer",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
+
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
+
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
+      width: "20ch",
     },
   },
 }));
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
+  const handleSearch = (text, e) => {
+    e.preventDefault();
+    setSearchText(text);
+    navigate(`/search/${text}`);
+  };
   return (
     <Box sx={{ flexGrow: 1, mb: 2 }}>
       <AppBar
@@ -75,15 +86,38 @@ const Header = () => {
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             style={{ fontWeight: "bold" }}
           >
-            SpaceX
+            <Link to="/" style={{ color: "#00BFFF", textDecoration: "none" }}>
+              SpaceX
+            </Link>
           </Typography>
+
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+            <Button
+              onClick={(e) => {
+                console.log("click");
+                if (searchText !== "") {
+                  handleSearch(searchText, e);
+                }
+              }}
+              style={{
+                color: "white",
+                padding: "21px 2px",
+              }}
+            >
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+            </Button>
             <StyledInputBase
               placeholder="Search…"
+              defaultValue={searchText}
               inputProps={{ "aria-label": "search" }}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && e.target.value !== "") {
+                  handleSearch(e.target.value, e);
+                }
+              }}
             />
           </Search>
         </Toolbar>

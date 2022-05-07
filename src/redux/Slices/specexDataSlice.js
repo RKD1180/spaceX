@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   rocketData: [],
+  searchData: [],
 };
 
 const storeDataSlice = createSlice({
@@ -11,8 +12,11 @@ const storeDataSlice = createSlice({
     storeAllData: (state, { payload }) => {
       state.rocketData = payload;
     },
+    searchData: (state, { payload }) => {
+      state.searchData = payload;
+    },
   },
 });
 
-export const { storeAllData } = storeDataSlice.actions;
+export const { storeAllData, searchData } = storeDataSlice.actions;
 export default storeDataSlice.reducer;
