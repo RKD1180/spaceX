@@ -138,8 +138,48 @@ const Header = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                <Link to="/">Home</Link>
-                <Link to="/">Home</Link>
+                <Link
+                  to="/"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Home
+                </Link>
+
+                <Link
+                  to="/failure"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Failure
+                </Link>
+
+                <Link
+                  to="/success"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Success
+                </Link>
+                <Link
+                  to="/upcoming"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Upcoming
+                </Link>
               </Menu>
             </Box>
             <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
@@ -223,8 +263,48 @@ const Header = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <Link to="/">Home</Link>
-                <Link to="/">Home</Link>
+                <Link
+                  to="/"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Home
+                </Link>
+
+                <Link
+                  to="/failure"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Failure
+                </Link>
+
+                <Link
+                  to="/success"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Success
+                </Link>
+                <Link
+                  to="/upcoming"
+                  style={{
+                    color: "#00BFFF",
+                    textDecoration: "none",
+                    marginRight: 10,
+                  }}
+                >
+                  Upcoming
+                </Link>
               </Menu>
             </Box>
             <Search>
@@ -235,16 +315,17 @@ const Header = () => {
                     handleSearch(searchText, e);
                   }
                 }}
+                sx={{ padding: { md: "21px 2px" } }}
                 style={{
                   color: "white",
-                  padding: "21px 2px",
                 }}
               >
                 <SearchIconWrapper>
-                  <SearchIcon />
+                  <SearchIcon sx={{ mt: { xs: 5, md: 0 } }} />
                 </SearchIconWrapper>
               </Button>
               <StyledInputBase
+                sx={{ mt: { xs: -4, md: 0 } }}
                 placeholder="Search…"
                 defaultValue={searchText}
                 inputProps={{ "aria-label": "search" }}
