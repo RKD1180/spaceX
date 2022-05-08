@@ -325,7 +325,7 @@ const Header = () => {
                 </SearchIconWrapper>
               </Button>
               <StyledInputBase
-                sx={{ mt: { xs: -4, md: 0 } }}
+                sx={{ mt: { xs: -4, md: 0 }, ml: { xs: 6, md: 0 } }}
                 placeholder="Search…"
                 defaultValue={searchText}
                 inputProps={{ "aria-label": "search" }}

@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Box } from "@mui/material";
 import React from "react";
 import rocket from "../../asset/image/rocket.svg";
 
@@ -19,20 +19,24 @@ const HeroSection = () => {
       >
         <Grid item xs={12} md={6}>
           <Container maxWidth={"sm"}>
-            <h3 style={{ fontSize: 25, fontWeight: "bold", marginBottom: 15 }}>
-              Welcome To SpaceX Center
-            </h3>
-            <p
-              style={{
-                fontSize: 15,
-                fontWeight: "bold",
-                marginTop: 0,
-                paddingTop: 0,
-                paddingBottom: 25,
-              }}
-            >
-              In this website you can get all the data about SpaceX.
-            </p>
+            <Box sx={{ mt: { xs: 10 } }}>
+              <h3
+                style={{ fontSize: 25, fontWeight: "bold", marginBottom: 15 }}
+              >
+                Welcome To SpaceX Center
+              </h3>
+              <p
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginTop: 0,
+                  paddingTop: 0,
+                  paddingBottom: 25,
+                }}
+              >
+                In this website you can get all the data about SpaceX.
+              </p>
+            </Box>
           </Container>
         </Grid>
         <Grid item xs={12} md={6} sx={{ mt: 10, mb: 10 }}>
