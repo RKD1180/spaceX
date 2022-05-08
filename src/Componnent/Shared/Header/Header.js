@@ -3,11 +3,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import { AppBar, Box, Button } from "@mui/material";
+import { AppBar, Box, Button, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
+import Menu from "@mui/material/Menu";
+import AdbIcon from "@mui/icons-material/Adb";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,6 +64,23 @@ const Header = () => {
     setSearchText(text);
     navigate(`/search/${text}`);
   };
+
+  // header
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, mb: 2 }}>
       <AppBar
@@ -69,58 +88,176 @@ const Header = () => {
         elevation={1}
         style={{ backgroundColor: "white", color: "#00BFFF" }}
       >
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-            style={{ fontWeight: "bold" }}
-          >
-            <Link to="/" style={{ color: "#00BFFF", textDecoration: "none" }}>
-              SpaceX
-            </Link>
-          </Typography>
-
-          <Search>
-            <Button
-              onClick={(e) => {
-                console.log("click");
-                if (searchText !== "") {
-                  handleSearch(searchText, e);
-                }
-              }}
-              style={{
-                color: "white",
-                padding: "21px 2px",
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "black",
+                textDecoration: "none",
               }}
             >
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-            </Button>
-            <StyledInputBase
-              placeholder="Search…"
-              defaultValue={searchText}
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => setSearchText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && e.target.value !== "") {
-                  handleSearch(e.target.value, e);
-                }
+              SpaceX
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                <Link to="/">Home</Link>
+                <Link to="/">Home</Link>
+              </Menu>
+            </Box>
+            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
               }}
-            />
-          </Search>
-        </Toolbar>
+            >
+              SpaceX
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Link
+                to="/"
+                style={{
+                  color: "#00BFFF",
+                  textDecoration: "none",
+                  marginRight: 10,
+                }}
+              >
+                Home
+              </Link>
+
+              <Link
+                to="/failure"
+                style={{
+                  color: "#00BFFF",
+                  textDecoration: "none",
+                  marginRight: 10,
+                }}
+              >
+                Failure
+              </Link>
+
+              <Link
+                to="/success"
+                style={{
+                  color: "#00BFFF",
+                  textDecoration: "none",
+                  marginRight: 10,
+                }}
+              >
+                Success
+              </Link>
+              <Link
+                to="/upcoming"
+                style={{
+                  color: "#00BFFF",
+                  textDecoration: "none",
+                  marginRight: 10,
+                }}
+              >
+                Upcoming
+              </Link>
+            </Box>
+
+            <Box sx={{ flexGrow: 0 }}>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <Link to="/">Home</Link>
+                <Link to="/">Home</Link>
+              </Menu>
+            </Box>
+            <Search>
+              <Button
+                onClick={(e) => {
+                  console.log("click");
+                  if (searchText !== "") {
+                    handleSearch(searchText, e);
+                  }
+                }}
+                style={{
+                  color: "white",
+                  padding: "21px 2px",
+                }}
+              >
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+              </Button>
+              <StyledInputBase
+                placeholder="Search…"
+                defaultValue={searchText}
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => setSearchText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && e.target.value !== "") {
+                    handleSearch(e.target.value, e);
+                  }
+                }}
+              />
+            </Search>
+          </Toolbar>
+        </Container>
       </AppBar>
     </Box>
   );

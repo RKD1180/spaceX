@@ -16,12 +16,12 @@ const SingleRocketData = ({ singleData }) => {
   //   console.log(singleData);
   return (
     <Grid item xs={12} md={4} lg={4}>
-      <Card sx={{ maxWidth: 345, mb: 5 }}>
+      <Card sx={{ maxWidth: 345, height: "30rem", mb: 5 }}>
         <CardMedia
           component="img"
           height="240"
           image={singleData.links?.mission_patch}
-          alt="green iguana"
+          alt="Rocket Image"
         />
 
         <CardContent>
